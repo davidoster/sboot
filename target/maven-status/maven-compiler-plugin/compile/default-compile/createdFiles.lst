@@ -1,0 +1,7 @@
+com\pcedu\sboot\controllers\ProductController.class
+com\pcedu\sboot\repositories\ProductRepository.class
+com\pcedu\sboot\entities\Product.class
+com\pcedu\sboot\services\ProductService.class
+com\pcedu\sboot\ServletInitializer.class
+com\pcedu\sboot\controllers\HomeController.class
+com\pcedu\sboot\SbootApplication.class
