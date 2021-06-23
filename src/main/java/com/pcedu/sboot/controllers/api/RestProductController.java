@@ -28,16 +28,14 @@ public class RestProductController {
     private ProductService service;
      
     @GetMapping("/")
-    public List<Product> getAllProducts(Model model) { // http://localhost:8080/api/products/
+    public List<Product> getAllProducts() { // http://localhost:8080/api/products/
         List<Product> products = service.getAllProducts();
-        model.addAttribute("products", products);
         return(products);
     }
     
     @GetMapping("/all")
-    public ResponseEntity<List<Product>> getAllProductsResponseEntity(Model model) { // http://localhost:8080/api/products/
+    public ResponseEntity<List<Product>> getAllProductsResponseEntity() { // http://localhost:8080/api/products/
         List<Product> products = service.getAllProducts();
-        model.addAttribute("products", products);
         ResponseEntity respEntity = new ResponseEntity<>(products, HttpStatus.FOUND);
         return(respEntity);
     }
