@@ -38,7 +38,7 @@ public class RestProductController {
     public ResponseEntity<List<Product>> getAllProductsResponseEntity(Model model) { // http://localhost:8080/api/products/
         List<Product> products = service.getAllProducts();
         model.addAttribute("products", products);
-        ResponseEntity respEntity = new ResponseEntity(products, HttpStatus.FOUND);
+        ResponseEntity respEntity = new ResponseEntity<>(products, HttpStatus.FOUND);
         return(respEntity);
     }
     
