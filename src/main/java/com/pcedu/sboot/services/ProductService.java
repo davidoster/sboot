@@ -24,10 +24,12 @@ public class ProductService {
     private ProductRepository repository;
     
     public List<Product> getAllProducts() {
-
         // call from Repository findAllProducts / getAllProducts
         return repository.findAll();
-        
+    }
+    
+    public boolean insertProduct(Product p) {
+        return repository.save(p).getId() > 0;
     }
     
 }

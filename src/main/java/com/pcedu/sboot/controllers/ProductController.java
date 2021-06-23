@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -33,8 +35,22 @@ public class ProductController {
     }
     
     @GetMapping("/new")
-    public String newProduct() { // http://localhost:8080/products/new
+    public String newProduct(Model model) { // http://localhost:8080/products/new
+//        Product p = new Product(1L, "AAA", "Desc AAA", 100, "http://sdfsdf"); // Demonstration purposes
+        Product p = new Product();
+        model.addAttribute("product", p);
         return("newProduct");
+    }
+    
+    @PostMapping("/new")
+    public String insertProduct(@ModelAttribute(name="product")Product p, Model model) {
+        if(service.insertProduct(p)) {
+            List<Product> products = service.getAllProducts();
+            model.addAttribute("products", products);
+            return("products");
+        } else {
+            return("/");
+        }
     }
     
 }
