@@ -40,7 +40,11 @@ public class ProductController {
 //        Product p = new Product(1L, "AAA", "Desc AAA", 100, "http://sdfsdf"); // Demonstration purposes
         Product p = new Product();
         model.addAttribute("product", p);
-        return("newProduct");
+        model.addAttribute("title", "New Product");
+        model.addAttribute("h1", "Insert New Product");
+        model.addAttribute("submit", "Add a New Product");
+        model.addAttribute("action", "/products/new");
+        return("newEditProduct");
     }
     
     @PostMapping("/new")
@@ -59,14 +63,40 @@ public class ProductController {
         // 1. findById
         // 2. delete
         // 3. findAll
-        List<Product> products = service.getAllProducts();
-        model.addAttribute("products", products);
         if(service.findById(id)) {
             service.deleteById(id);
+            List<Product> products = service.getAllProducts();
+            model.addAttribute("products", products);
             return("products");
         } else {
-            return("products");
+            // forward /products
+            return("redirect:/products/");
         }
+        
+    }
+    
+    // GET edit
+    @GetMapping("/edit/{id}")
+    public String editProduct(@PathVariable(name="id") Long id, Model model) {
+        // findById
+        // addAttribute
+        // forward /edit
+        Product p = service.getById(id);
+        model.addAttribute("product", p);
+        model.addAttribute("title", "Edit Product");
+        model.addAttribute("h1", "Edit Product");
+        model.addAttribute("action", "/products/update");
+        model.addAttribute("submit", "Update Product");
+        return("newEditProduct");
+    }
+    
+    // GET or POST????
+    @PostMapping("/update")
+    public String updateProduct(@ModelAttribute(name="product")Product p, Model model) {
+        service.updateProduct(p);
+        List<Product> products = service.getAllProducts();
+        model.addAttribute("products", products);
+        return("products");
     }
     
 }

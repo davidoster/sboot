@@ -32,6 +32,10 @@ public class ProductService {
         return repository.save(p).getId() > 0;
     }
     
+    public Product getById(Long id) {
+        return(repository.findById(id).get());
+    }
+    
     public boolean findById(Long id) {
         return(repository.findById(id).get().getId() > 0 );
     }
@@ -39,6 +43,20 @@ public class ProductService {
     public boolean deleteById(Long id) {
         repository.deleteById(id);
         return(true);
+    }
+    
+    public boolean updateProduct(Product p) {
+        // findById p.getId()
+        // change properties
+        // save
+        Product dbProduct = repository.findById(p.getId()).get();
+//        dbProduct = p; // NOOOOOOOOOOOO YOU BREAK PERSISTENCE!!!!!
+        dbProduct.setName(p.getName());
+        dbProduct.setDescription(p.getDescription());
+        dbProduct.setPrice(p.getPrice());
+        dbProduct.setImage(p.getImage());
+        repository.saveAndFlush(dbProduct);
+        return true;
     }
     
 }
