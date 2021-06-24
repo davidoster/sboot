@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -50,6 +51,21 @@ public class ProductController {
             return("products");
         } else {
             return("/");
+        }
+    }
+    
+    @GetMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable(name="id") Long id, Model model) {
+        // 1. findById
+        // 2. delete
+        // 3. findAll
+        List<Product> products = service.getAllProducts();
+        model.addAttribute("products", products);
+        if(service.findById(id)) {
+            service.deleteById(id);
+            return("products");
+        } else {
+            return("products");
         }
     }
     

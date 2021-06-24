@@ -32,4 +32,13 @@ public class ProductService {
         return repository.save(p).getId() > 0;
     }
     
+    public boolean findById(Long id) {
+        return(repository.findById(id).get().getId() > 0 );
+    }
+    
+    public boolean deleteById(Long id) {
+        repository.deleteById(id);
+        return(true);
+    }
+    
 }

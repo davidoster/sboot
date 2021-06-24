@@ -20,6 +20,7 @@
     </head>
     <body>
         <h1>List of Products</h1>
+        <a href="/products/new" class="btn btn-primary">New Product</a>
         <table id="products_table" class="display" style="width:100%">
         <thead>
             <td>ID</td>
@@ -42,6 +43,7 @@
             </c:forEach>
         </tbody>
     </table>
+    <a href="/products/new" class="btn btn-primary">New Product</a>
     <script>
         $(document).ready(function () {
             $('#products_table').DataTable();
