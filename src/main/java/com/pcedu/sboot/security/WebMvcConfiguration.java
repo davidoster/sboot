@@ -25,25 +25,11 @@ public class WebMvcConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeRequests()
-//                .antMatchers("/", "/home").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/login") // custom login form
-//                .permitAll()
-//                .and()
-//                .logout()
-//                .permitAll();
-
         // http -> authorize -> in what url -> what authorization
-        http.authorizeRequests().antMatchers("/", "/home").permitAll(). // public - unregistered role
-        anyRequest().authenticated().and().formLogin();                                  // registered - authenticated
-        
-        
-//        http.authorizeRequests().antMatchers("/home").permitAll().and().
-//             authorizeRequests().antMatchers("/").permitAll();
+        http.authorizeRequests().antMatchers("/", "/home").permitAll(). //. // public - unregistered role
+        antMatchers("/api/**").hasRole("ADMIN"). // registered - authenticated - role ADMIN
+        antMatchers("/products/**").hasRole("USER").and(). // registered - authenticated - ROLE USER        
+        formLogin().permitAll().and().logout().permitAll();
     }
 
     @Bean
@@ -55,7 +41,14 @@ public class WebMvcConfiguration extends WebSecurityConfigurerAdapter {
                         .password("password")
                         .roles("USER")
                         .build();
+        
+        UserDetails user2
+                = User.withDefaultPasswordEncoder()
+                        .username("user2")
+                        .password("password2")
+                        .roles("ADMIN")
+                        .build();
 
-        return new InMemoryUserDetailsManager(user);
+        return new InMemoryUserDetailsManager(user, user2);
     }
 }
