@@ -1,8 +1,10 @@
 C:\Users\George.Pasparakis\Documents\NetBeansProjects\sboot\src\main\java\com\pcedu\sboot\entities\Product.java
 C:\Users\George.Pasparakis\Documents\NetBeansProjects\sboot\src\main\java\com\pcedu\sboot\controllers\HomeController.java
+C:\Users\George.Pasparakis\Documents\NetBeansProjects\sboot\src\main\java\com\pcedu\sboot\security\WebMvcConfiguration.java
 C:\Users\George.Pasparakis\Documents\NetBeansProjects\sboot\src\main\java\com\pcedu\sboot\SbootApplication.java
 C:\Users\George.Pasparakis\Documents\NetBeansProjects\sboot\src\main\java\com\pcedu\sboot\ServletInitializer.java
 C:\Users\George.Pasparakis\Documents\NetBeansProjects\sboot\src\main\java\com\pcedu\sboot\controllers\api\RestProductController.java
+C:\Users\George.Pasparakis\Documents\NetBeansProjects\sboot\src\main\java\com\pcedu\sboot\MvcConfiguration.java
 C:\Users\George.Pasparakis\Documents\NetBeansProjects\sboot\src\main\java\com\pcedu\sboot\services\ProductService.java
 C:\Users\George.Pasparakis\Documents\NetBeansProjects\sboot\src\main\java\com\pcedu\sboot\repositories\ProductRepository.java
 C:\Users\George.Pasparakis\Documents\NetBeansProjects\sboot\src\main\java\com\pcedu\sboot\controllers\ProductController.java
