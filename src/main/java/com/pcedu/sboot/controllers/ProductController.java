@@ -7,8 +7,11 @@ package com.pcedu.sboot.controllers;
 
 import com.pcedu.sboot.entities.Product;
 import com.pcedu.sboot.services.ProductService;
+import java.util.Date;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +36,20 @@ public class ProductController {
         List<Product> products = service.getAllProducts();
         model.addAttribute("products", products);
         return("products");
+    }
+    
+    // /products/:id <---- the product's page where you buy
+    
+    // /products/buy/:id
+    @GetMapping("/buy/{id}")
+    public String buyProduct(HttpServletRequest request, @PathVariable(name="id") Long id) {
+        // 1. find the loggedin user
+        // 2. call a OrderService.buy(user,product,date)
+        
+        String username = request.getUserPrincipal().getName();
+        System.out.println("username: " + username);
+        service.insertBoughtProductForUser(username, id, "2021/07/02");
+        return("boughtProduct");
     }
     
     @GetMapping("/new")

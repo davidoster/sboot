@@ -30,7 +30,7 @@ public class WebMvcConfiguration extends WebSecurityConfigurerAdapter {
     // Enable JDBC Authentication
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(dataSource);
+        auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder());
     }
 
     @Override

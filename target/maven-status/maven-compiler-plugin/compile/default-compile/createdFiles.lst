@@ -1,3 +1,4 @@
+com\pcedu\sboot\entities\User.class
 com\pcedu\sboot\repositories\ProductRepository.class
 com\pcedu\sboot\controllers\api\RestProductController.class
 com\pcedu\sboot\services\ProductService.class

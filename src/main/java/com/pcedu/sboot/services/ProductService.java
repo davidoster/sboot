@@ -6,6 +6,7 @@
 package com.pcedu.sboot.services;
 
 import com.pcedu.sboot.entities.Product;
+import com.pcedu.sboot.entities.User;
 import com.pcedu.sboot.repositories.ProductRepository;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -56,6 +57,16 @@ public class ProductService {
         dbProduct.setPrice(p.getPrice());
         dbProduct.setImage(p.getImage());
         repository.saveAndFlush(dbProduct);
+        return true;
+    }
+    
+    public boolean insertBoughtProductForUser(String username, Long id, String date) {
+        Product dbProduct = repository.findById(id).get();
+        // create a UserService, UserRepository
+        // call User u = userService.getUserByUserName(username);
+//        System.out.println("User: " + u.toString());
+//        dbProduct.getUsers().add(u);
+        
         return true;
     }
     

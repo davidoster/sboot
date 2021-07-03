@@ -6,11 +6,14 @@
 package com.pcedu.sboot.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 
@@ -33,6 +36,9 @@ public class Product implements Serializable{
     private double price;
     
     private String image;
+    
+    @ManyToMany(mappedBy="products")
+    private List<User> users = new ArrayList<>();
 
     public Product() {
     }
@@ -83,6 +89,14 @@ public class Product implements Serializable{
 
     public void setImage(String image) {
         this.image = image;
+    }
+    
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     @Override
@@ -137,6 +151,8 @@ public class Product implements Serializable{
         sb.append('}');
         return sb.toString();
     }
+
+    
     
     
     
