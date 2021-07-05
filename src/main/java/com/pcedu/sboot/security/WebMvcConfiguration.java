@@ -44,15 +44,15 @@ public class WebMvcConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
     }
     
-    @Bean
-    public static NoOpPasswordEncoder passwordEncoder() {
-        return (NoOpPasswordEncoder)NoOpPasswordEncoder.getInstance();
-    }
-    
 //    @Bean
-//    public static BCryptPasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
+//    public static NoOpPasswordEncoder passwordEncoder() {
+//        return (NoOpPasswordEncoder)NoOpPasswordEncoder.getInstance();
 //    }
+    
+    @Bean
+    public static BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
 //    @Bean
 //    @Override

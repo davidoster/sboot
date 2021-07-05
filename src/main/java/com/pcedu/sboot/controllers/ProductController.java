@@ -38,9 +38,9 @@ public class ProductController {
         return("products");
     }
     
-    // /products/:id <---- the product's page where you buy
+
     
-    // /products/buy/:id
+    // /products/buy/{id}
     @GetMapping("/buy/{id}")
     public String buyProduct(HttpServletRequest request, @PathVariable(name="id") Long id) {
         // 1. find the loggedin user

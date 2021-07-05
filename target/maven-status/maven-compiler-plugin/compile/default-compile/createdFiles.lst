@@ -1,5 +1,6 @@
 com\pcedu\sboot\entities\User.class
 com\pcedu\sboot\repositories\ProductRepository.class
+com\pcedu\sboot\repositories\UserRepository.class
 com\pcedu\sboot\controllers\api\RestProductController.class
 com\pcedu\sboot\services\ProductService.class
 com\pcedu\sboot\ServletInitializer.class
@@ -9,3 +10,4 @@ com\pcedu\sboot\controllers\ProductController.class
 com\pcedu\sboot\entities\Product.class
 com\pcedu\sboot\MvcConfiguration.class
 com\pcedu\sboot\security\WebMvcConfiguration.class
+com\pcedu\sboot\services\UserService.class

@@ -24,6 +24,9 @@ public class ProductService {
     @Autowired
     private ProductRepository repository;
     
+    @Autowired
+    private UserService userService;
+    
     public List<Product> getAllProducts() {
         // call from Repository findAllProducts / getAllProducts
         return repository.findAll();
@@ -62,10 +65,18 @@ public class ProductService {
     
     public boolean insertBoughtProductForUser(String username, Long id, String date) {
         Product dbProduct = repository.findById(id).get();
-        // create a UserService, UserRepository
-        // call User u = userService.getUserByUserName(username);
-//        System.out.println("User: " + u.toString());
-//        dbProduct.getUsers().add(u);
+        User u = userService.findByUserName(username);
+        System.out.println("User: " + u.toString());
+//        dbProduct.getUsers().add(u); // this line doesn't add the Order!!!!
+       
+        // CAUTION: The below line doesn't add date on the table Orders
+        // The fact that we don't put a date on the order creates an error, since we put that dateofpurchase is NOT NULL
+        // Since we don't have an Order entity we had to change the table structure from DATE to DATETIME
+        // By doing this we can insert a DEFAULT value CURRENT_TIMESTAMP (chec the structure of the Orders table)
+        // so a current date time is inserted when the order is created!!!
+        u.getProducts().add(dbProduct); // but this WORKS!!!!
+        // if we need to add a record on the middle table of Orders we need to create an addtion from the table where
+        // the JoinTable exists!!!!
         
         return true;
     }
