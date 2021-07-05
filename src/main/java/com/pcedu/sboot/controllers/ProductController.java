@@ -7,11 +7,9 @@ package com.pcedu.sboot.controllers;
 
 import com.pcedu.sboot.entities.Product;
 import com.pcedu.sboot.services.ProductService;
-import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
