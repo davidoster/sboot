@@ -14,7 +14,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
 /**
  *
@@ -23,10 +23,10 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class WebMvcConfiguration extends WebSecurityConfigurerAdapter {
-    
+
     @Autowired
     DataSource dataSource;
-    
+
     // Enable JDBC Authentication
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
@@ -37,21 +37,27 @@ public class WebMvcConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // http -> authorize -> in what url -> what authorization
         http.authorizeRequests().antMatchers("/", "/home").permitAll(). //. // public - unregistered role
-        antMatchers("/api/**").hasRole("ADMIN"). // registered - authenticated - role ADMIN
-        antMatchers("/products/**").hasRole("USER").and(). // registered - authenticated - ROLE USER        
-        formLogin().permitAll().and().logout().permitAll();
-        
+                antMatchers("/api/**").hasRole("ADMIN"). // registered - authenticated - role ADMIN
+                antMatchers("/products/**").hasRole("USER").and(). // registered - authenticated - ROLE USER        
+                formLogin().permitAll().and().logout().permitAll();
+
         http.csrf().disable();
     }
-    
+
 //    @Bean
 //    public static NoOpPasswordEncoder passwordEncoder() {
 //        return (NoOpPasswordEncoder)NoOpPasswordEncoder.getInstance();
 //    }
-    
     @Bean
     public static BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public JdbcUserDetailsManager jdbcUserDetailsManager() throws Exception {
+        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager();
+        jdbcUserDetailsManager.setDataSource(dataSource);
+        return jdbcUserDetailsManager;
     }
 
 //    @Bean

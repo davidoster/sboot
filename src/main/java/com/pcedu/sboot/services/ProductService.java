@@ -72,10 +72,10 @@ public class ProductService {
         // CAUTION: The below line doesn't add date on the table Orders
         // The fact that we don't put a date on the order creates an error, since we put that dateofpurchase is NOT NULL
         // Since we don't have an Order entity we had to change the table structure from DATE to DATETIME
-        // By doing this we can insert a DEFAULT value CURRENT_TIMESTAMP (chec the structure of the Orders table)
+        // By doing this we can insert a DEFAULT value CURRENT_TIMESTAMP (check the structure of the Orders table)
         // so a current date time is inserted when the order is created!!!
         u.getProducts().add(dbProduct); // but this WORKS!!!!
-        // if we need to add a record on the middle table of Orders we need to create an addtion from the table where
+        // if we need to add a record on the table in the middle of Orders we need to create an addtion from the table where
         // the JoinTable exists!!!!
         
         return true;

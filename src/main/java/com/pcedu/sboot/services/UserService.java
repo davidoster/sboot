@@ -24,4 +24,8 @@ public class UserService {
     public User findByUserName(String username) {
         return(repository.findByUserName(username));
     }
+    
+    public boolean insertUser(User u) {
+        return repository.save(u).getUsername().isEmpty();
+    }
 }
